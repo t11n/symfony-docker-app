@@ -19,7 +19,7 @@ before_install:
 
 script:
   # build and start development containers
-  - cp docker-compose.override.dev.yml docker-compose.override.yml
+  - cp docker-compose.override.dev-ci.yml docker-compose.override.yml
   - docker-compose build
   - docker-compose up --detach
 

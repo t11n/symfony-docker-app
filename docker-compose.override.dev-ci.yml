@@ -1,0 +1,14 @@
+##
+# Template for development
+##
+version: '3.7'
+
+services:
+  app:
+    build:
+      target: dev
+    hostname: app
+  nginx:
+    hostname: nginx
+    ports:
+      - "80:80"
