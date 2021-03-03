@@ -1,0 +1,26 @@
+##
+# Template for development
+##
+version: '3.7'
+
+services:
+  app:
+    build:
+      target: dev
+    hostname: app
+  nginx:
+    hostname: nginx
+    ports:
+      - "80:80"
+
+volumes:
+  code:
+    driver: local
+
+    # Connects to the docker host via nfs;
+    # works with cifs on windows and local mapping on linux, as well;
+    # adust to your needs.
+    driver_opts:
+      type: nfs
+      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+      device: ":$PWD"
