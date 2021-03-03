@@ -1,0 +1,54 @@
+language: minimal
+
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.27.4
+
+before_install:
+  # Update docker-compose
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+  # Add simple test scripts
+  - echo 'while read input ; do if [[ $input == *"$1"* ]]; then exit 0; fi; done; exit 1;' > contains.sh
+  - echo 'while read input ; do if [[ $input != *"$1"* ]]; then exit 0; fi; done; exit 1;' > notcontains.sh
+
+script:
+  # build and start development containers
+  - cp docker-compose.override.dev-ci.yml docker-compose.override.yml
+  - docker-compose build
+  - docker-compose up --detach
+
+  # development tests
+  - 'docker ps | bash contains.sh symfony-docker-app_app'
+  - 'docker ps | bash contains.sh symfony-docker-app_nginx'
+
+  - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
+  - 'docker-compose exec app php --version | bash contains.sh "with Xdebug"'
+
+  - 'curl -sI localhost | bash contains.sh "HTTP/1.1 404 Not Found"'
+
+  # Shut down
+  - docker-compose down --volumes
+
+  # build and start production containers
+  - cp docker-compose.override.prod.yml docker-compose.override.yml
+  - docker-compose build
+  - docker-compose up --detach
+
+  # production tests
+  - 'docker ps | bash contains.sh symfony-docker-app_app'
+  - 'docker ps | bash contains.sh symfony-docker-app_nginx'
+
+  - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
+  - 'docker-compose exec app php --version | bash notcontains.sh "with Xdebug"'
+
+  - 'curl -s localhost | bash contains.sh "Symfony Docker App"'
+  - 'curl -s localhost | bash contains.sh "PHP: 8.0.2"'
+
+  # Shut down
+  - docker-compose down --volumes

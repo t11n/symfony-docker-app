@@ -1,0 +1,10 @@
+##
+# Template for production
+##
+version: '3.7'
+
+services:
+  app:
+  nginx:
+    ports:
+      - "80:80"
