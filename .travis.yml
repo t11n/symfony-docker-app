@@ -41,8 +41,8 @@ script:
   - docker-compose up --detach
 
   # production tests
-  - 'docker ps | bash contains.sh php-docker-app_app'
-  - 'docker ps | bash contains.sh php-docker-app_web'
+  - 'docker ps | bash contains.sh symfony-docker-app_app'
+  - 'docker ps | bash contains.sh symfony-docker-app_nginx'
 
   - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
   - 'docker-compose exec app php --version | bash notcontains.sh "with Xdebug"'
