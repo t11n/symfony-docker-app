@@ -29,6 +29,7 @@ script:
 
   - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
   - 'docker-compose exec app php --version | bash contains.sh "with Xdebug"'
+  - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
 
   - 'curl -sI localhost | bash contains.sh "HTTP/1.1 404 Not Found"'
 
@@ -46,6 +47,7 @@ script:
 
   - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
   - 'docker-compose exec app php --version | bash notcontains.sh "with Xdebug"'
+  - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
 
   - 'curl -s localhost | bash contains.sh "Symfony Docker App"'
   - 'curl -s localhost | bash contains.sh "PHP: 8.0.2"'
