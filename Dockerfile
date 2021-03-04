@@ -40,7 +40,8 @@ RUN apt-get update --quiet && \
 RUN apt-get update --quiet && \
     apt-get install --quiet --yes libicu-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    docker-php-ext-install -j$(nproc) intl
+    docker-php-ext-install -j$(nproc) intl && \
+    docker-php-ext-install -j$(nproc) opcache
 
 # Install symfony installer
 RUN wget https://get.symfony.com/cli/installer -O - | bash && \
