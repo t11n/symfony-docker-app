@@ -3,6 +3,11 @@
 ##
 FROM php:8.0.2-fpm as dev
 
+# Update packages
+RUN apt-get update --quiet && \
+    apt-get upgrade --quiet --yes && \
+    rm -rf /var/lib/apt/lists/*
+
 # Set application directory
 RUN rm -r /var/www/html && \
     mkdir /var/www/app
