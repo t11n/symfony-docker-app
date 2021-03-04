@@ -36,6 +36,12 @@ RUN apt-get update --quiet && \
     docker-php-ext-install -j$(nproc) zip && \
     wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer -O - -q | php -- --quiet --install-dir=/usr/local/bin --filename=composer
 
+# Install symfony requirements
+RUN apt-get update --quiet && \
+    apt-get install --quiet --yes libicu-dev && \
+    rm -rf /var/lib/apt/lists/* && \
+    docker-php-ext-install -j$(nproc) intl
+
 # Install symfony installer
 RUN wget https://get.symfony.com/cli/installer -O - | bash && \
     mv /root/.symfony/bin/symfony /usr/local/bin/symfony && \
