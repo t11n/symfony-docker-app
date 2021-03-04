@@ -30,7 +30,8 @@ RUN apt-get update --quiet && \
     apt-get install --quiet --yes wget \
                                   unzip \
                                   libzip4 \
-                                  libzip-dev && \
+                                  libzip-dev \
+                                  git && \
     rm -rf /var/lib/apt/lists/* && \
     docker-php-ext-install -j$(nproc) zip && \
     wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer -O - -q | php -- --quiet --install-dir=/usr/local/bin --filename=composer
