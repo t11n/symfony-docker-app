@@ -52,7 +52,7 @@ script:
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
 
   - 'curl -s localhost | bash contains.sh "Welcome to Symfony!"'
-  - 'curl -s localhost | bash contains.sh "Symfony 5.2."'
+  - 'curl -s localhost | bash contains.sh "Symfony <span class=\"version\">5.2."'
 
   # Shut down
   - docker-compose down --volumes
