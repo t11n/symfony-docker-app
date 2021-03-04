@@ -51,8 +51,8 @@ script:
   - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
 
-  - 'curl -s localhost | bash contains.sh "Symfony Docker App"'
-  - 'curl -s localhost | bash contains.sh "PHP: 8.0.2"'
+  - 'curl -s localhost | bash contains.sh "Welcome to Symfony!"'
+  - 'curl -s localhost | bash contains.sh "Symfony 5.2."'
 
   # Shut down
   - docker-compose down --volumes
