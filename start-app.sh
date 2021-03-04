@@ -5,7 +5,7 @@
 ##
 
 # Perform startup tasks
-composer install
+composer install --no-dev
 
 # Start PHP Fast Process Manager
 php-fpm
