@@ -51,8 +51,8 @@ script:
   - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
 
-  - 'curl -s localhost | bash contains.sh "Welcome to Symfony!"'
-  - 'curl -s localhost | bash contains.sh "Symfony <span class=\"version\">5.2."'
+  - 'curl -sI localhost | bash contains.sh "HTTP/1.1 404 Not Found"'
+  - 'curl -s localhost | bash contains.sh "Oops! An Error Occurred"'
 
   # Shut down
   - docker-compose down --volumes

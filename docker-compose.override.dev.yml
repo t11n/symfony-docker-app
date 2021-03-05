@@ -8,6 +8,8 @@ services:
     build:
       target: dev
     hostname: app
+    environment:
+      - APP_ENV=dev
   nginx:
     hostname: nginx
     ports:
