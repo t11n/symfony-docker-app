@@ -32,6 +32,10 @@ script:
   - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
 
+  - 'docker-compose exec app bash -c export | bash contains.sh "APP_ENV=\"dev\""'
+  - 'docker-compose exec app bash -c export | bash contains.sh "XDEBUG_MODE=\"develop,debug\""'
+  - 'docker-compose exec app bash -c export | bash contains.sh "XDEBUG_CONFIG=\"client_host=host.docker.internal\""'
+
   - 'curl -sI localhost | bash contains.sh "HTTP/1.1 404 Not Found"'
 
   # Shut down
@@ -50,6 +54,10 @@ script:
   - 'docker-compose exec app php --version | bash notcontains.sh "with Xdebug"'
   - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
+
+  - 'docker-compose exec app bash -c export | bash contains.sh "APP_ENV=\"prod\""'
+  - 'docker-compose exec app bash -c export | bash notcontains.sh "XDEBUG_MODE=\"develop,debug\""'
+  - 'docker-compose exec app bash -c export | bash notcontains.sh "XDEBUG_CONFIG=\"client_host=host.docker.internal\""'
 
   - 'curl -sI localhost | bash contains.sh "HTTP/1.1 404 Not Found"'
   - 'curl -s localhost | bash contains.sh "Oops! An Error Occurred"'
