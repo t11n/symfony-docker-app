@@ -10,6 +10,12 @@ services:
     hostname: app
     environment:
       - APP_ENV=dev
+
+      # enable debugger
+      - XDEBUG_MODE=develop,debug
+      - XDEBUG_CONFIG=client_host=host.docker.internal
+      # setting the server name for PhpStorm may be useful for debugging
+      - PHP_IDE_CONFIG=serverName=symfony-docker-app
   nginx:
     hostname: nginx
     ports:
