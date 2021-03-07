@@ -1,2 +1,2 @@
-# symfony-docker-app
+# symfony-docker-skeleton
 Template for symfony docker applications
