@@ -1,0 +1,6 @@
+# composer
+/vendor
+
+# symfony
+/bin/.phpunit
+/var
