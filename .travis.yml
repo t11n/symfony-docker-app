@@ -62,5 +62,9 @@ script:
   - 'curl -sI localhost | bash contains.sh "HTTP/1.1 404 Not Found"'
   - 'curl -s localhost | bash contains.sh "Oops! An Error Occurred"'
 
+  # PHPUnit
+  - 'docker-compose exec app cp phpunit.xml.dist phpunit.xml'
+  - 'docker-compose exec app bin/phpunit'
+
   # Shut down
   - docker-compose down --volumes
