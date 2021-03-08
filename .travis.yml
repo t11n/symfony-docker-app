@@ -27,7 +27,7 @@ script:
   - 'docker ps | bash contains.sh symfony-docker-skeleton_app'
   - 'docker ps | bash contains.sh symfony-docker-skeleton_nginx'
 
-  - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
+  - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.3"'
   - 'docker-compose exec app php --version | bash contains.sh "with Xdebug"'
   - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
@@ -50,7 +50,7 @@ script:
   - 'docker ps | bash contains.sh symfony-docker-skeleton_app'
   - 'docker ps | bash contains.sh symfony-docker-skeleton_nginx'
 
-  - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.2"'
+  - 'docker-compose exec app php --version | bash contains.sh "PHP 8.0.3"'
   - 'docker-compose exec app php --version | bash notcontains.sh "with Xdebug"'
   - 'docker-compose exec app composer --version | bash contains.sh "Composer"'
   - 'docker-compose exec app symfony -V | bash contains.sh "Symfony CLI"'
