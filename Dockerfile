@@ -1,7 +1,7 @@
 ##
 # dev stage
 ##
-FROM php:8.0.2-fpm as dev
+FROM php:8.0.3-fpm as dev
 
 # Update packages
 RUN apt-get update --quiet && \
