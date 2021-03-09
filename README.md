@@ -2,10 +2,10 @@
 Skeleton for dockerized symfony applications. Use this repository as a template for your new Symfony app. 
 
 ## Features
+- Based on symfony skeleton
 - Ready to use docker and docker-compose setup with nginx and php 8 fpm, suited for symfony 5 projects
 - Stages for development and production environments
 - Ready to go development inside developer container
-- Based on symfony skeleton
 - Sources mounted via NFS for rapid development with macOS
 - Includes XDebug with preconfigured debugger in development stage
 - composer, symfony-app as well as phpunit preinstalled
