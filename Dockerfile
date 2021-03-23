@@ -48,6 +48,8 @@ RUN wget https://get.symfony.com/cli/installer -O - | bash && \
     mv /root/.symfony/bin/symfony /usr/local/bin/symfony && \
     rm -rf /root/.symfony
 
+CMD ["/usr/local/sbin/php-fpm"]
+
 ##
 # prod stage
 ##
